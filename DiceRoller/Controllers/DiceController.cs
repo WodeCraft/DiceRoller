@@ -30,7 +30,7 @@ namespace DiceRoller.Controllers
             ViewBag.LatestRoll = dice.Outcome;
             ViewBag.NumRolls = dice.NumRolls;
             ViewBag.TotalSum = dice.TotalSum;
-            ViewBag.AvgScore = (dice.TotalSum / dice.NumRolls);
+            ViewBag.AvgScore = dice.AvgScore;
             ViewBag.Distribution = dice.Distribution;
 
             return View();

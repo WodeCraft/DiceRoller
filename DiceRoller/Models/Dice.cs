@@ -43,6 +43,13 @@ namespace DiceRoller.Models
             }
         }
 
+        public decimal AvgScore
+        {
+            get
+            {
+                return Decimal.Divide(totalSum, numRolls);
+            }
+        }
 
         Random rnd = new Random();
 
