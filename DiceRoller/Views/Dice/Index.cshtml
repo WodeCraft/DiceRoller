@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Dice Roller</h2>
+
+@using (Html.BeginForm())
+{
+    <input type="submit" value="Roll the Dice" />
+}
+
+@if (ViewBag.TotalSum > 0)
+{
+    @String.Format("The dice landed on {0}", ViewBag.LatestRoll);<br />
+    @String.Format("The dice has been thrown {0} times", ViewBag.NumRolls);<br />
+    @String.Format("The total score is {0}", ViewBag.TotalSum);<br />
+    @String.Format("The average score is {0}", ViewBag.AvgScore);<br />
+    <span>
+        There has been thrown:<br />
+        @for(int i = 0; i < ViewBag.Distribution.Length; i++)
+        {
+            @String.Format("{0}: {1}", ViewBag.Distribution[i], i + 1);<br />
+        }
+    </span>
+
+}
