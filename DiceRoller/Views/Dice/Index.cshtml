@@ -12,6 +12,7 @@
 
 @if (ViewBag.TotalSum > 0)
 {
+    <h3>ViewBag.*</h3>
     <br />
     <span>
         @String.Format("The dice landed on {0}", ViewBag.LatestRoll)<br />
@@ -25,6 +26,27 @@
         @for(int i = 0; i < ViewBag.Distribution.Length; i++)
         {
             @String.Format("{0}: {1}", ViewBag.Distribution[i], i + 1)<br />
+        }
+    </span>
+
+}
+
+@if (ViewBag.Dice != null)
+{
+    <h3>ViewBag.Dice</h3>
+    <br />
+    <span>
+        @String.Format("The dice landed on {0}", ViewBag.Dice.Outcome)<br />
+        @String.Format("The dice has been thrown {0} times", ViewBag.Dice.NumRolls)<br />
+        @String.Format("The total score is {0}", ViewBag.Dice.TotalSum)<br />
+        @String.Format("The average score is {0:0.00}", ViewBag.Dice.AvgScore)<br />
+    </span>
+    <br />
+    <span>
+        There has been thrown:<br />
+        @for (int i = 0; i < ViewBag.Dice.Distribution.Length; i++)
+        {
+            @String.Format("{0}: {1}", ViewBag.Dice.Distribution[i], i + 1)<br />
         }
     </span>
 

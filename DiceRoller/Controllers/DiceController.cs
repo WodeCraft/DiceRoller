@@ -33,6 +33,8 @@ namespace DiceRoller.Controllers
             ViewBag.AvgScore = dice.AvgScore;
             ViewBag.Distribution = dice.Distribution;
 
+            ViewBag.Dice = dice;
+
             return View();
         }
     }
