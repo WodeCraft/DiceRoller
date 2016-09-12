@@ -51,7 +51,7 @@ namespace DiceRoller.Models
             }
         }
 
-        Random rnd = new Random();
+        static readonly Random rnd = new Random();
 
         public Dice()
         {

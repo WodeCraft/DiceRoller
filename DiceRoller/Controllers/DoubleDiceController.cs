@@ -14,6 +14,7 @@ namespace DiceRoller.Controllers
         [HttpPost]
         public ActionResult Index(FormCollection formCollection)
         {
+
             string diceRolled = formCollection["rollDice"];
             Dice diceOne = (Dice)Session["diceOne"];
             Dice diceTwo = (Dice)Session["diceTwo"];
