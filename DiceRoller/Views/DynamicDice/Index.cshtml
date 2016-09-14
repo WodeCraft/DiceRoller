@@ -6,8 +6,8 @@
 
 @helper ShowDiceRolls(Dice dice, string number)
 {
-    if (dice != null)
-    {
+if (dice != null)
+{
         <span>
             @String.Format("Dice {0} landed on {1}", number, dice.Outcome)<br />
             @String.Format("The dice has been thrown {0} times", dice.NumRolls)<br />
@@ -22,33 +22,44 @@
                 @String.Format("{0}: {1}", dice.Distribution[i], i + 1)<br />
             }
         </span>
-    }
+}
 }
 
 @helper ShowDiceButton(string number)
 {
-    <input type="submit" name="rollDice" value="@number" /> 
+    <input type="submit" name="rollDice" value="@number" />
 }
 
 <h2>Dynamic Dice Roller</h2>
 
 @using (Html.BeginForm())
 {
-    foreach(KeyValuePair<string, Dice> kvp in ViewBag.Die)
-    {
-        @ShowDiceButton(kvp.Key)
-    }
+    <div id="mainDiv">
+        @foreach (KeyValuePair<string, Dice> kvp in ViewBag.Die)
+        {
+            <div id="dice">
+                @ShowDiceButton(kvp.Key)<br />
+
+                @if (kvp.Value.NumRolls > 0)
+                {
+                    @ShowDiceRolls(kvp.Value, kvp.Key)
+                }
+            </div>
+        }
+    </div>
 }
 
 <br />
 
-@foreach (KeyValuePair<string, Dice> kvp in ViewBag.Die)
-{
-    if (kvp.Value.NumRolls > 0)
-    {
-        @ShowDiceRolls(kvp.Value, kvp.Key)
-        <br />
+<style>
+    #dice {
+        display:inline;
+        position:relative;
+        float:left;
+        margin-right:10px;
+        border: 1px solid black;
+        padding: 2px;
+        overflow: hidden;
     }
-}
 
-
+</style>

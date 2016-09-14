@@ -47,7 +47,14 @@ namespace DiceRoller.Models
         {
             get
             {
-                return Decimal.Divide(totalSum, numRolls);
+                if (numRolls > 0)
+                {
+                    return Decimal.Divide(totalSum, numRolls);
+                }
+                else
+                {
+                    return 0m;
+                }
             }
         }
 

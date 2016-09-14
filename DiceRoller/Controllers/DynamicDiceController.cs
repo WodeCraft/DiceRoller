@@ -9,14 +9,7 @@ namespace DiceRoller.Controllers
         // GET: DynamicDice
         public ActionResult Index()
         {
-            Dictionary<string, Dice> die = (Dictionary<string, Dice>)Session["die"];
-            if (die == null)
-            {
-                die = new Dictionary<string, Dice>();
-                die.Add("One", new Dice());
-                die.Add("Two", new Dice());
-                Session["die"] = die;
-            }
+            Dictionary<string, Dice> die = LoadDices();
 
             ViewBag.Die = die;
 
@@ -26,14 +19,7 @@ namespace DiceRoller.Controllers
         [HttpPost]
         public ActionResult Index(FormCollection formCollection)
         {
-            Dictionary<string, Dice> die = (Dictionary<string, Dice>)Session["die"];
-            if (die == null)
-            {
-                die = new Dictionary<string, Dice>();
-                die.Add("One", new Dice());
-                die.Add("Two", new Dice());
-                Session["die"] = die;
-            }
+            Dictionary<string, Dice> die = LoadDices();
             string diceRolled = formCollection["rollDice"];
             Dice diceToRoll = die[diceRolled];
 
@@ -45,6 +31,25 @@ namespace DiceRoller.Controllers
             ViewBag.Die = die;
 
             return View();
+        }
+
+        private Dictionary<string, Dice> LoadDices()
+        {
+            Dictionary<string, Dice> die;
+
+            if (Session["die"] == null)
+            {
+                die = new Dictionary<string, Dice>();
+                die.Add("One", new Dice());
+                die.Add("Two", new Dice());
+                Session["die"] = die;
+            }
+            else
+            {
+                die = (Dictionary<string, Dice>)Session["die"];
+            }
+
+            return die;
         }
     }
 }
